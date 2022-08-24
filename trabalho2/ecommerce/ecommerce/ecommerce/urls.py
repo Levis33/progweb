@@ -18,9 +18,28 @@ from django.urls import path, include
 from django.conf.urls.static import static
 from django.conf import settings
 
+from ecommerce.auth.views import UserLoginView, PasswordChangeView, createUserView, userCreatedView
+from ecommerce.auth.forms import UserLoginForm, CustomPasswordResetForm, CustomPasswordChangeForm
+from django.contrib.auth import views
+
 urlpatterns = [
    # path('admin/', admin.site.urls),
    path('', include('project.urls')),
+   
+       path('accounts/login/', UserLoginView.as_view(
+        redirect_authenticated_user=True,
+        authentication_form=UserLoginForm
+    ), name='login'),
+    path('accounts/password_reset/', views.PasswordResetView.as_view(
+        form_class=CustomPasswordResetForm
+    ), name='password_reset'),
+    path('accounts/password_change/', PasswordChangeView.as_view(
+        form_class=CustomPasswordChangeForm
+    ), name='password_change'),
+    path('accounts/', include('django.contrib.auth.urls')),
+
+    path('accounts/new/', createUserView, name='user_create'),
+    path('accounts/new/done/', userCreatedView, name='user_created'),
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

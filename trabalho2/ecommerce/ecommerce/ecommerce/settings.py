@@ -130,3 +130,17 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+ENVIRONMENT == "development"
+
+EMAIL_BACKEND = 'mailer.backend.DbBackend'
+if ENVIRONMENT == 'development':
+    MAILER_EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'  # para development - loga os emails que seriam enviados no console
+else:
+    MAILER_EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+    EMAIL_HOST = '' # TODO: Checar como isso funciona antes de colocar em teste/prod (online na vm) -> Sampaio ou Nicho
+    EMAIL_USE_TLS = True
+    EMAIL_PORT = 587
+    EMAIL_HOST_USER = os.environ['EMAIL_HOST_USER']
+    EMAIL_HOST_PASSWORD = os.environ['EMAIL_HOST_PASSWORD']
+    DEFAULT_FROM_EMAIL = EMAIL_HOST_USER

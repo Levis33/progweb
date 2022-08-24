@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     {% load static %}
+    {% load custom_tags %}
     <link rel="stylesheet"  type="text/css" href="{% static '/css/style.css' %}">
 
     <!-- Load fonts style after rendering the layout styles -->
@@ -81,7 +82,7 @@
             <div class="row">
 
                 <div class="col-md-4 pt-5">
-                    <h2 class="h2 text-success border-bottom pb-3 border-light logo">Zay Shop</h2>
+                    <h2 class="h2 text-success logo">Zay Shop</h2>
                     <ul class="list-unstyled text-light footer-link-list">
                         <li>
                             <i class="fas fa-map-marker-alt fa-fw"></i>
@@ -99,7 +100,7 @@
                 </div>
 
                 <div class="col-md-4 pt-5">
-                    <h2 class="h2 text-light border-bottom pb-3 border-light">Mais informações</h2>
+                    <h2 class="h2 text-light">Mais informações</h2>
                     <ul class="list-unstyled text-light footer-link-list">
                         <li><a class="" href="{% url 'home' %}">Home</a></li>
                         <li><a class="" href="#">Sobre nós</a></li>
@@ -110,13 +111,21 @@
                 </div>
 
                 <div class="col-md-4 pt-5">
-                    <h2 class="h2 text-light border-bottom pb-3 border-light">Redes Sociais</h2>
-                    <ul class="list-unstyled text-light footer-link-list">
-                        <li><a class="" href="#"><i class="fa-brands fa-facebook"></i></a></li>
-                        <li><a class="" href="#"><i class="fa-brands fa-instagram"></i></a></li>
-                        <li><a class="" href="#"><i class="fa-brands fa-twitter"></i></a></li>
-                        <li><a class="" href="#"><i class="fa-brands fa-whatsapp"></i></a></li>
-                    </ul>
+                    <h2 class="h2 text-light">Redes Sociais</h2>
+                        <ul class="list-unstyled text-light footer-link-list">
+                            <a class="" href="#"><img src="{% static '/img/facebook-logo.svg' %}" ></a>
+                            <a class="" href="#"><img src="{% static '/img/instagram-logo.svg' %}" ></a>
+                            <a class="" href="#"><img src="{% static '/img/twitter-logo.svg' %}" ></a>
+                            <a class="" href="#"><img src="{% static '/img/whatsapp-logo.svg' %}" ></a>
+                        </ul>
+
+                    <h2 class="h2 text-light">Formas de Pagamento</h2>
+                        <ul class="list-unstyled text-light footer-link-list">
+                            <a class="" href="#"><img src="{% static '/img/boleto-logo.png' %}" ></a>
+                            <a class="" href="#"><img src="{% static '/img/amex-logo.svg' %}" ></a>
+                            <a class="" href="#"><img src="{% static '/img/mastercard-logo.svg' %}" ></a>
+                            <a class="" href="#"><img src="{% static '/img/visa-logo.svg' %}" ></a>
+                        </ul>
                 </div>
 
             </div>

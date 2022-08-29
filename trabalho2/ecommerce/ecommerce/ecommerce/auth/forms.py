@@ -1,6 +1,6 @@
-from django.contrib.auth.forms import AuthenticationForm, PasswordResetForm, PasswordChangeForm
+from django.contrib.auth.forms import AuthenticationForm, PasswordResetForm, PasswordChangeForm, UserCreationForm
 from django.core.exceptions import ValidationError
-from django.utils.translation import ugettext_lazy as _U
+from django.utils.translation import gettext_lazy as _U
 from django import forms
 from project.models import Usuario
 from django.contrib.auth.password_validation import validate_password
@@ -36,25 +36,12 @@ class CustomPasswordChangeForm(PasswordChangeForm):
     new_password2 = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': '', 'id': 'id_new_password_2'}))
 
 
-class CreateUserForm(forms.Form):
-    username = forms.CharField(label='Nome de Usuário', max_length=150, widget=forms.TextInput(attrs={'class': 'form-control'}), validators=[RegexValidator(regex=r'^[A-Za-z\d_]+$', message='Seu usuário deve conter apenas letras, números ou _.')])
+class registerForm(UserCreationForm):
     password1 = forms.CharField(label='Senha', widget=forms.PasswordInput(attrs={'class': 'form-control'}), validators=[validate_password])
     password2 = forms.CharField(label='Confirmar senha', widget=forms.PasswordInput(attrs={'class': 'form-control'}))
     first_name = forms.CharField(label='Nome', max_length=150, widget=forms.TextInput(attrs={'class': 'form-control'}))
     last_name = forms.CharField(label='Sobrenome', max_length=150, widget=forms.TextInput(attrs={'class': 'form-control'}))
     email = forms.EmailField(label='Email', max_length=254, widget=forms.EmailInput(attrs={'class': 'form-control'}))
-
-    def clean_username(self):
-        cleaned_data = super().clean()
-        username = cleaned_data.get('username')
-
-        if len(cleaned_data.get('username')) < 4:
-            raise ValidationError(_U('Seu nome de usuário deve ter pelo menos 4 caracteres.'))
-
-        if Usuario.objects.filter(username=username).count() > 0:  # TODO alterar para o model de Usuario do projeto
-            raise ValidationError(_U('Este usuário já existe.'))
-
-        return username
 
     def clean_email(self):
         cleaned_data = super().clean()

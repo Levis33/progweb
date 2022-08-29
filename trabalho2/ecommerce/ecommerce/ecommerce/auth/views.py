@@ -3,8 +3,8 @@ from django.urls import reverse
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.db.models import Q
-from project.models import Usuario
-from ecommerce.auth.forms import registerForm, CreateStudentForm
+from project.models import Usuario  
+from ecommerce.auth.forms import registerForm
 from ecommerce.mailer import alert_staff, send_email
 from logger.functions import log_event
 from logger.models import LogEvents

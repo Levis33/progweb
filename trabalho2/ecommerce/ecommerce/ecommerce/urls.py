@@ -26,7 +26,7 @@ urlpatterns = [
    # path('admin/', admin.site.urls),
    path('', include('project.urls')),
    
-       path('accounts/login/', UserLoginView.as_view(
+    path('accounts/login/', UserLoginView.as_view(
         redirect_authenticated_user=True,
         authentication_form=UserLoginForm
     ), name='login'),

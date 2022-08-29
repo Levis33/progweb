@@ -4,7 +4,7 @@ from django.template.loader import render_to_string
 from django.utils.html import strip_tags
 from logger.models import EmailTypes
 from project.models import Usuario
-from ecommerce.settings import ENVIRONMENT
+# from ecommerce.settings import ENVIRONMENT
 
 
 def alert_staff(mtype, context={}):
@@ -16,7 +16,7 @@ def send_email(to, mtype, context={}):
     if type(to) == str:
         to = [to]
 
-    context["ENVIRONMENT"] = ENVIRONMENT
+    # context["ENVIRONMENT"] = ENVIRONMENT
     email_type = EmailTypes.objects.get(email_type=mtype)
     html_message = render_to_string('email/env_container.html', context) + render_to_string('email/' + email_type.template_name + '.html', context)
 

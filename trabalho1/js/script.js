@@ -55,11 +55,13 @@ function load_game() {
   teamPlayer.setAttribute('src', "images/" + time + ".png");
   teamPlayer.setAttribute('class', "clubIcon");
 
-  let X;
-  X = document.createElement('h1');
-  document.getElementById("times").appendChild(X);
-  X.setAttribute('class', 'textoCenterWhite');
-  X.document.createTextNode("X")
+  // let X;
+  // X = document.createElement('h1');
+  // document.getElementById("times").appendChild(X);
+  // X.setAttribute('class', 'textoCenterWhite');
+  // X.setAttribute("id", "X")
+  
+  // document.getElementById("X").innerHTML = "X";
 
   let teamRobo
   teamRobo = document.createElement('img');
@@ -99,7 +101,7 @@ function escolheCampo(pos) {
     // mensagem de erro nao esta na vez de jogar
   }
 
-  verificaVitoria();
+  verificaVitoria("pessoa");
   // escolheRobo();
   setTimeout(escolheRobo, 600)
 
@@ -129,13 +131,50 @@ function escolheRobo() {
 
     }
   }
-  verificaVitoria();
+  verificaVitoria("robo");
 
 }
 
 
-function verificaVitoria() {
+function verificaVitoria(jogador) {
+
+  let verificaVencedor;
+  let vencedor;
+  let teveGanhador = false;
+
+  if(jogador == "robo"){
+    verificaVencedor = 2;
+    vencedor = timeRobo;
+  }
+  else{
+    verificaVencedor = 1;
+    vencedor = time;
+  }
+
+  // X X X  verificar vertical /  horizontal / diagonal
+  // X X X  vitoria vertical = {0, 3, 6}. { 1, 4, 7} {2 , 5. 8}
+  // X X X  vitoria horizontal = {0, 1 ,2} { 3, 4 ,5} { 6, 7, 8}
+  //        vitoria diagonal { 0 , 4, 8}  {2, 4, 6}
 
 
+  if((matrizJogo[0] == verificaVencedor && matrizJogo[3] == verificaVencedor && matrizJogo[6] == verificaVencedor) || 
+  (matrizJogo[1] == verificaVencedor && matrizJogo[4] == verificaVencedor && matrizJogo[7] == verificaVencedor) || 
+  (matrizJogo[2] == verificaVencedor && matrizJogo[5] == verificaVencedor && matrizJogo[8] == verificaVencedor) ||
+  (matrizJogo[0] == verificaVencedor && matrizJogo[1] == verificaVencedor && matrizJogo[2] == verificaVencedor) ||
+  (matrizJogo[3] == verificaVencedor && matrizJogo[4] == verificaVencedor && matrizJogo[5] == verificaVencedor) ||
+  (matrizJogo[6] == verificaVencedor && matrizJogo[7] == verificaVencedor && matrizJogo[8] == verificaVencedor) ||
+  (matrizJogo[0] == verificaVencedor && matrizJogo[4] == verificaVencedor && matrizJogo[8] == verificaVencedor) ||
+  (matrizJogo[2] == verificaVencedor && matrizJogo[4] == verificaVencedor && matrizJogo[6] == verificaVencedor)){
 
+    //mensasgem jogo acabou
+    alert('O time ' + vencedor + ' venceu o clássico!' )
+    jogaRobo = false;
+    jogaPlayer = false;
+    teveGanhador = true;
+    
+  }
+  if (!matrizJogo.includes(0) && !teveGanhador) {
+    alert('Houve um empate!')
+  }
+  
 }

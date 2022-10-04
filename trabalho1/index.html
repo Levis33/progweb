@@ -22,44 +22,10 @@
     <img src="images/fluminense.png" class="clubIcon">
     <img src="images/botafogo.png" class="clubIcon">
   </div>
-
-
-
-
-  <!--     <div class="containerGame">
-      <div class="tile" id="1" onclick=escolheCampo(this.id)>
-      </div>
-      <div class="tile">
-
-      </div>
-      <div class="tile">
-
-      </div>
-      <div class="tile">
-
-      </div>
-      <div class="tile">
-
-      </div>
-      <div class="tile">
-
-      </div>
-      <div class="tile">
-
-      </div>
-      <div class="tile">
-
-      </div>
-      <div class="tile">
-
-      </div>
-    </div>
-    <section class="containerGame"></section> -->
-
   <div class="textoCenterWhite">
     <label for="email">Insira seu endereço de Email</label>
     <br><br>
-    <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="/exemplo[dom1|dom2]">
+    <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="\exemplo[dom1|dom2]">
 
     <p id="error"></p>
 
@@ -68,7 +34,7 @@
     <p>Escolha seu time </p>
 
     <select class="form-select" id="playerTime">
-      <option selected>Flamengo</option>
+      <option value="flamengo" selected>Flamengo</option>
       <option value="bangu">Bangu</option>
       <option value="fluminense">Fluminense</option>
       <option value="botafogo">Botafogo</option>
@@ -77,6 +43,44 @@
     <br><br>
 
     <button onclick="verificaEmail()">Verificar Email e Jogar</button>
+
+    <div class="escondido" id="escondido">
+      <div id="time">
+      </div>
+      <h1 class="textoCenterWhite">X</h1>
+      <div id="timeRobo">
+      </div>
+      <div class="containerGame">
+        <div class="tile" id="0" onclick=escolheCampo(this.id)>
+
+        </div>
+        <div class="tile" id="1" onclick=escolheCampo(this.id)>
+
+        </div>
+        <div class="tile" id="2" onclick=escolheCampo(this.id)>
+
+        </div>
+        <div class="tile" id="3" onclick=escolheCampo(this.id)>
+
+        </div>
+        <div class="tile" id="4" onclick=escolheCampo(this.id)>
+
+        </div>
+        <div class="tile" id="5" onclick=escolheCampo(this.id)>
+
+        </div>
+        <div class="tile" id="6" onclick=escolheCampo(this.id)>
+
+        </div>
+        <div class="tile" id="7" onclick=escolheCampo(this.id)>
+
+        </div>
+        <div class="tile" id="8" onclick=escolheCampo(this.id)>
+
+        </div>
+      </div>
+    </div>
+
 
   </div>
 

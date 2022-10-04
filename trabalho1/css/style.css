@@ -60,6 +60,9 @@ body {
   cursor: pointer;
 }
 
+.escondido{
+  visibility: hidden;
+}
 
 #error{ 
   color: #ff0000

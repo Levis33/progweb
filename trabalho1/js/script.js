@@ -1,4 +1,4 @@
-let Regex = /^\\[bcdfghjklmnpqrstvxwyz]+\[{1}([bcdfghjklmnpqrstvxwyz]+\|{1}){1,}[bcdfghjklmnpqrstvxwyz]+]{1}$/;
+
 let time;
 let timeRobo;
 let arrTimes = ["flamengo", "botafogo", "bangu", "fluminense"]
@@ -7,17 +7,12 @@ let jogaPlayer = true;
 let jogaRobo = false;
 
 function verificaEmail() {
+  let Regex = /^\\[bcdfghjklmnpqrstvxwyz]+\[{1}([bcdfghjklmnpqrstvxwyz]+\|{1}){1,}[bcdfghjklmnpqrstvxwyz]+]{1}$/;
   let email = document.getElementById('email').value;
-  let verificacao = Regex.test(email);
 
-  console.log(email)
-
-  console.log(verificacao)
-
-  verificacao = true;
   escolherTime();
 
-  if (verificacao) {
+  if (Regex.test(email)) {
     //document.getElementById("error").innerHTML = "";
     document.documentElement.innerHTML = '';
     load_game();
@@ -28,58 +23,63 @@ function verificaEmail() {
   }
 }
 
+function escolherTime() {
+  time = document.getElementById('playerTime').value;
+  arrTimes = arrTimes.filter(e => e !== time);
+  console.log(arrTimes);
+  timeRobo = arrTimes[Math.floor(Math.random() * 3)];
+}
+
 function load_game() {
+  // time = "bolsonaro"
+  // timeRobo = "lula"
 
   // window.location.replace("load_game.html");
 
-  let NC = '<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>O clássico</title><link href="css/style.css" rel="stylesheet"><script src="js/script.js"></script></head><body class="background"><div><div class="title"><h1 class="titleStyle">O clássico</h1></div><div><div id="time"><h1 class="textoCenterWhite">X</h1><div id="timeRobo"></div><div class="containerGame"><div class="tile" id="0" onclick=escolheCampo(this.id)></div><div class="tile" id="1" onclick=escolheCampo(this.id)></div><div class="tile" id="2" onclick=escolheCampo(this.id)></div><div class="tile" id="3" onclick=escolheCampo(this.id)></div><div class="tile" id="4" onclick=escolheCampo(this.id)></div><div class="tile" id="5" onclick=escolheCampo(this.id)></div><div class="tile" id="6" onclick=escolheCampo(this.id)></div><div class="tile" id="7" onclick=escolheCampo(this.id)></div><div class="tile" id="8" onclick=escolheCampo(this.id)></div></div><section class="containerGame"></section></body></html>'
+  let NC = '<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>O clássico</title><link href="css/style.css" rel="stylesheet"><script src=""></script></head><body class="background"><div><div class="title"><h1 class="titleStyle">O clássico</h1></div><div class="escudos" id="times"></div><div class="containerGame"><div class="tile" id="0" onclick=escolheCampo(this.id)></div><div class="tile" id="1" onclick=escolheCampo(this.id)></div><div class="tile" id="2" onclick=escolheCampo(this.id)></div><div class="tile" id="3" onclick=escolheCampo(this.id)></div><div class="tile" id="4" onclick=escolheCampo(this.id)></div><div class="tile" id="5" onclick=escolheCampo(this.id)></div><div class="tile" id="6" onclick=escolheCampo(this.id)></div><div class="tile" id="7" onclick=escolheCampo(this.id)></div><div class="tile" id="8" onclick=escolheCampo(this.id)></div></div><section class="containerGame"></section></body></html>'
 
   document.open();
   document.write(NC);
   document.close();
 
-  console.log(time, timeRobo);
+  // $('#inicio').empty();
 
-  let team
-  team = document.createElement('img');
-  // team.id = 'teamImg';
-  // document.getElementById("time").appendChild(team);
+  // const element = document.getElementById("escondido");	// Get element
+  // // element.style.visibility = "visible";
+  // console.log(time, timeRobo);
 
-  team.setAttribute('src', "images/" + time + ".png");
-  team.setAttribute('class', "clubIcon");
 
+  let teamPlayer
+  teamPlayer = document.createElement('img');
+  document.getElementById("times").appendChild(teamPlayer);
+  teamPlayer.setAttribute('src', "images/" + time + ".png");
+  teamPlayer.setAttribute('class', "clubIcon");
+
+  let X;
+  X = document.createElement('h1');
+  document.getElementById("times").appendChild(X);
+  X.setAttribute('class', 'textoCenterWhite');
+  X.document.createTextNode("X")
 
   let teamRobo
-  teamRobo= document.createElement('img');
-  // teamRobo.id = 'teamRoboImg';
-  document.getElementById("timeRobo").appendChild(teamImg);
-  document.getElementById("timeRobo").innerHTML = "Hello World";
-
+  teamRobo = document.createElement('img');
+  document.getElementById("times").appendChild(teamRobo);
   teamRobo.setAttribute('src', "images/" + timeRobo + ".png");
   teamRobo.setAttribute('class', "clubIcon");
 
 
-}
 
-function escolherTime() {
-  time = document.getElementById('playerTime').value;
-  arrTimes = arrTimes.filter(e => e !== 'B');
-  timeRobo = arrTimes[Math.floor(Math.random() * 3)];
-
-  console.log(time, timeRobo);
 }
 
 
 function escolheCampo(pos) {
+  if (jogaPlayer) {
 
-  
-  if(jogaPlayer){
-
-    if(matrizJogo[pos] == 0){
+    if (matrizJogo[pos] == 0) {
 
       let teamImg
-      teamImg= document.createElement('img');
-      teamImg.id = pos+'img';
+      teamImg = document.createElement('img');
+      teamImg.id = pos + 'img';
       document.getElementById(pos).appendChild(teamImg);
       teamImg.setAttribute('src', "images/" + time + ".png");
       teamImg.setAttribute('class', "clubIcon");
@@ -91,34 +91,35 @@ function escolheCampo(pos) {
 
     }
 
-    else{
+    else {
       // mensagem de erro posicao ja foi jogada
     }
   }
-  else{
+  else {
     // mensagem de erro nao esta na vez de jogar
   }
-  
+
   verificaVitoria();
-  jogaRobo();
+  // escolheRobo();
+  setTimeout(escolheRobo, 600)
 
 }
 
-function jogaRobo(){
+function escolheRobo() {
 
   let posJogadaRobo;
 
-  while(jogaRobo){
+  while (jogaRobo) {
 
     posJogadaRobo = Math.floor(Math.random() * 9)
 
-    if(matrizJogo[posJogadaRobo] == 0){
+    if (matrizJogo[posJogadaRobo] == 0) {
 
       let teamImg
-      teamImg= document.createElement('img');
-      teamImg.id = pos+'img';
-      document.getElementById(pos).appendChild(teamImg);
-      teamImg.setAttribute('src', "images/" + time + ".png");
+      teamImg = document.createElement('img');
+      teamImg.id = posJogadaRobo + 'img';
+      document.getElementById(posJogadaRobo).appendChild(teamImg);
+      teamImg.setAttribute('src', "images/" + timeRobo + ".png");
       teamImg.setAttribute('class', "clubIcon");
 
       jogaRobo = false;
@@ -129,12 +130,12 @@ function jogaRobo(){
     }
   }
   verificaVitoria();
-  
+
 }
 
 
-function verificaVitoria(){
+function verificaVitoria() {
 
 
-  
+
 }

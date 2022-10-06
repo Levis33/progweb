@@ -5,6 +5,7 @@ let arrTimes = ["flamengo", "botafogo", "bangu", "fluminense"]
 let matrizJogo = [0, 0, 0, 0, 0, 0, 0, 0, 0]; // 0 ainda nao foi jogada a posicoa, 1 pessoa, 2 robo
 let jogaPlayer = true;
 let jogaRobo = false;
+let teveGanhador = false;
 
 function verificaEmail() {
   let Regex = /^\\[bcdfghjklmnpqrstvxwyz]+\[{1}([bcdfghjklmnpqrstvxwyz]+\|{1}){1,}[bcdfghjklmnpqrstvxwyz]+]{1}$/;
@@ -31,12 +32,10 @@ function escolherTime() {
 }
 
 function load_game() {
-  // time = "bolsonaro"
-  // timeRobo = "lula"
 
   // window.location.replace("load_game.html");
 
-  let NC = '<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>O clássico</title><link href="css/style.css" rel="stylesheet"><script src=""></script></head><body class="background"><div><div class="title"><h1 class="titleStyle">O clássico</h1></div><div class="escudos" id="times"></div><div class="containerGame"><div class="tile" id="0" onclick=escolheCampo(this.id)></div><div class="tile" id="1" onclick=escolheCampo(this.id)></div><div class="tile" id="2" onclick=escolheCampo(this.id)></div><div class="tile" id="3" onclick=escolheCampo(this.id)></div><div class="tile" id="4" onclick=escolheCampo(this.id)></div><div class="tile" id="5" onclick=escolheCampo(this.id)></div><div class="tile" id="6" onclick=escolheCampo(this.id)></div><div class="tile" id="7" onclick=escolheCampo(this.id)></div><div class="tile" id="8" onclick=escolheCampo(this.id)></div></div><section class="containerGame"></section></body></html>'
+  let NC = '<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>O clássico</title><link href="css/style.css" rel="stylesheet"><script src=""></script></head><body class="background"><div><div class="title"><h1 class="titleStyle">O clássico</h1></div><div class="escudos" id="times"></div><div class="containerGame"><div class="tile" id="0" onclick=escolheCampo(this.id)></div><div class="tile" id="1" onclick=escolheCampo(this.id)></div><div class="tile" id="2" onclick=escolheCampo(this.id)></div><div class="tile" id="3" onclick=escolheCampo(this.id)></div><div class="tile" id="4" onclick=escolheCampo(this.id)></div><div class="tile" id="5" onclick=escolheCampo(this.id)></div><div class="tile" id="6" onclick=escolheCampo(this.id)></div><div class="tile" id="7" onclick=escolheCampo(this.id)></div><div class="tile" id="8" onclick=escolheCampo(this.id)></div></div><button class="buttonAlign" onclick="voltarPartida()">Voltar</button></body></html>'
 
   document.open();
   document.write(NC);
@@ -140,7 +139,6 @@ function verificaVitoria(jogador) {
 
   let verificaVencedor;
   let vencedor;
-  let teveGanhador = false;
 
   if(jogador == "robo"){
     verificaVencedor = 2;
@@ -156,7 +154,6 @@ function verificaVitoria(jogador) {
   // X X X  vitoria horizontal = {0, 1 ,2} { 3, 4 ,5} { 6, 7, 8}
   //        vitoria diagonal { 0 , 4, 8}  {2, 4, 6}
 
-
   if((matrizJogo[0] == verificaVencedor && matrizJogo[3] == verificaVencedor && matrizJogo[6] == verificaVencedor) || 
   (matrizJogo[1] == verificaVencedor && matrizJogo[4] == verificaVencedor && matrizJogo[7] == verificaVencedor) || 
   (matrizJogo[2] == verificaVencedor && matrizJogo[5] == verificaVencedor && matrizJogo[8] == verificaVencedor) ||
@@ -167,14 +164,35 @@ function verificaVitoria(jogador) {
   (matrizJogo[2] == verificaVencedor && matrizJogo[4] == verificaVencedor && matrizJogo[6] == verificaVencedor)){
 
     //mensasgem jogo acabou
-    alert('O time ' + vencedor + ' venceu o clássico!' )
     jogaRobo = false;
     jogaPlayer = false;
     teveGanhador = true;
+
+    alert('O time ' + vencedor + ' venceu o clássico!' );
     
   }
+
   if (!matrizJogo.includes(0) && !teveGanhador) {
     alert('Houve um empate!')
   }
   
+}
+
+
+function voltarPartida(){
+  
+  let NC = '<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>O clássico</title><link href="css/style.css" rel="stylesheet"><script src="js/script.js"></script></head><body class="background"><div class="title"><h1 class="titleStyle">O clássico</h1></div><div class="escudos"><img src="images/flamengo.png" class="clubIcon"><img src="images/bangu.png" class="clubIcon"><img src="images/fluminense.png" class="clubIcon"><img src="images/botafogo.png" class="clubIcon"></div><div class="textoCenterWhite"><label for="email">Insira seu endereço de Email</label><br><br><input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="\exemplo[dom1|dom2]"><p id="error"></p><p>Escolha seu time </p><select class="form-select" id="playerTime"><option value="flamengo" selected>Flamengo</option><option value="bangu">Bangu</option><option value="fluminense">Fluminense</option><option value="botafogo">Botafogo</option></select><br><br><button onclick="verificaEmail()">Verificar Email e Jogar</button><div class="escondido" id="escondido"><div id="time"></div><h1 class="textoCenterWhite">X</h1><div id="timeRobo"></div><div class="containerGame"><div class="tile" id="0" onclick=escolheCampo(this.id)></div><div class="tile" id="1" onclick=escolheCampo(this.id)></div><div class="tile" id="2" onclick=escolheCampo(this.id)></div><div class="tile" id="3" onclick=escolheCampo(this.id)></div><div class="tile" id="4" onclick=escolheCampo(this.id)></div><div class="tile" id="5" onclick=escolheCampo(this.id)></div><div class="tile" id="6" onclick=escolheCampo(this.id)></div><div class="tile" id="7" onclick=escolheCampo(this.id)></div><div class="tile" id="8" onclick=escolheCampo(this.id)></div></div></div></div></body></html>'; 
+  document.open();
+  document.write(NC);
+  document.close();
+
+
+  time = '';
+  timeRobo = '';
+  arrTimes = ["flamengo", "botafogo", "bangu", "fluminense"]
+  matrizJogo = [0, 0, 0, 0, 0, 0, 0, 0, 0];
+  jogaPlayer = true;
+  jogaRobo = false;
+  teveGanhador = false;
+
 }

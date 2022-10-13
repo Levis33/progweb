@@ -173,7 +173,9 @@ function verificaVitoria(jogador) {
   }
 
   if (!matrizJogo.includes(0) && !teveGanhador) {
-    alert('Houve um empate!')
+    alert('Houve um empate!');
+    jogaRobo = false;
+    jogaPlayer = false;
   }
   
 }

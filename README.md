@@ -5,6 +5,7 @@ Thiago Levis Alambert Rodrigues
 Pedro Feres Manhães
 
 Explicação do Jogo:
+
 O jogo escolhido foi o jogo da velha temático com os times de futebol do rio de janeiro, onde a pessoa vai clicando e preenchendo os espaços vazios.
 Vence o jogador que conseguir formar uma linha com três símbolos do seu time, seja na horizontal, vertical ou diagonal.
 

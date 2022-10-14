@@ -5,6 +5,7 @@ let matrizJogo = [0, 0, 0, 0, 0, 0, 0, 0, 0]; // 0 ainda nao foi jogada a posica
 let jogaPlayer = true;
 let jogaRobo = false;
 let teveGanhador = false;
+let teveEmpate = false;
 
 function verificaEmail() {
   let Regex =
@@ -184,8 +185,10 @@ function verificaVitoria(jogador) {
     alert("O time " + vencedor + " venceu o clássico!");
   }
 
-  if (!matrizJogo.includes(0) && !teveGanhador) {
+  if (!matrizJogo.includes(0) && !teveGanhador && !teveEmpate) {
     alert("Houve um empate!");
+
+    teveEmpate = true
     jogaRobo = false;
     jogaPlayer = false;
   }
@@ -205,4 +208,5 @@ function voltarPartida() {
   jogaPlayer = true;
   jogaRobo = false;
   teveGanhador = false;
+  teveEmpate = false;
 }

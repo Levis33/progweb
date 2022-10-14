@@ -1,87 +1,62 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>O clássico</title>
+    <link href="css/style.css" rel="stylesheet" />
+    <script src="js/script.js"></script>
+  </head>
 
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width">
-  <title>O clássico</title>
-  <link href="css/style.css" rel="stylesheet">
-  <script src="js/script.js"></script>
-</head>
-
-<body class="background">
-  <div class="title">
-    <h1 class="titleStyle">O clássico</h1>
-  </div>
-  <div class="escudos">
-    <img src="images/flamengo.png" class="clubIcon">
-    <img src="images/bangu.png" class="clubIcon">
-    <img src="images/fluminense.png" class="clubIcon">
-    <img src="images/botafogo.png" class="clubIcon">
-  </div>
-  <div class="textoCenterWhite">
-    <label for="email">Insira seu endereço de Email</label>
-    <br><br>
-    <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="\exemplo[dom1|dom2]">
-
-    <p id="error"></p>
-
-
-
-    <p>Escolha seu time </p>
-
-    <select class="form-select" id="playerTime">
-      <option value="flamengo" selected>Flamengo</option>
-      <option value="bangu">Bangu</option>
-      <option value="fluminense">Fluminense</option>
-      <option value="botafogo">Botafogo</option>
-    </select>
-
-    <br><br>
-
-    <button onclick="verificaEmail()">Verificar Email e Jogar</button>
-
-    <div class="escondido" id="escondido">
-      <div id="time">
-      </div>
-      <h1 class="textoCenterWhite">X</h1>
-      <div id="timeRobo">
-      </div>
-      <div class="containerGame">
-        <div class="tile" id="0" onclick=escolheCampo(this.id)>
-
-        </div>
-        <div class="tile" id="1" onclick=escolheCampo(this.id)>
-
-        </div>
-        <div class="tile" id="2" onclick=escolheCampo(this.id)>
-
-        </div>
-        <div class="tile" id="3" onclick=escolheCampo(this.id)>
-
-        </div>
-        <div class="tile" id="4" onclick=escolheCampo(this.id)>
-
-        </div>
-        <div class="tile" id="5" onclick=escolheCampo(this.id)>
-
-        </div>
-        <div class="tile" id="6" onclick=escolheCampo(this.id)>
-
-        </div>
-        <div class="tile" id="7" onclick=escolheCampo(this.id)>
-
-        </div>
-        <div class="tile" id="8" onclick=escolheCampo(this.id)>
-
-        </div>
-      </div>
-
+  <body class="background">
+    <div class="title">
+      <label class="titleStyle">O clássico</label>
     </div>
+    <div class="escudos">
+      <img src="images/flamengo.png" class="clubIcon" />
+      <img src="images/bangu.png" class="clubIcon" />
+      <img src="images/fluminense.png" class="clubIcon" />
+      <img src="images/botafogo.png" class="clubIcon" />
+    </div>
+    <div class="textoCenterWhite">
+      <label>Escolha seu time </label>
 
+      <select class="form-select" id="playerTime">
+        <option value="flamengo" selected>Flamengo</option>
+        <option value="bangu">Bangu</option>
+        <option value="fluminense">Fluminense</option>
+        <option value="botafogo">Botafogo</option>
+      </select>
+      <br /><br />
+      <br /><br />
 
-  </div>
+      <label for="email">Insira seu endereço de Email</label>
 
-</body>
+      <input
+        type="email"
+        class="form-control"
+        id="email"
+        aria-describedby="emailHelp"
+        placeholder="\exemplo[dom1|dom2]"
+      />
 
+      <p id="error"></p>
+
+      <button onclick="verificaEmail()">Verificar Email e Jogar</button>
+
+      <div class="escondido" id="escondido">
+        <div class="containerGame">
+          <div class="tile" id="0" onclick="escolheCampo(this.id)"></div>
+          <div class="tile" id="1" onclick="escolheCampo(this.id)"></div>
+          <div class="tile" id="2" onclick="escolheCampo(this.id)"></div>
+          <div class="tile" id="3" onclick="escolheCampo(this.id)"></div>
+          <div class="tile" id="4" onclick="escolheCampo(this.id)"></div>
+          <div class="tile" id="5" onclick="escolheCampo(this.id)"></div>
+          <div class="tile" id="6" onclick="escolheCampo(this.id)"></div>
+          <div class="tile" id="7" onclick="escolheCampo(this.id)"></div>
+          <div class="tile" id="8" onclick="escolheCampo(this.id)"></div>
+        </div>
+      </div>
+    </div>
+  </body>
 </html>
